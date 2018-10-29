@@ -1,0 +1,61 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: spring-boot-app
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: spring-boot-app
+    spec:
+      containers:
+      - name: spring-boot-app
+        image: ajeshgeorge22/spring-boot-ubuntu
+        ports:
+        - containerPort: 8091
+          name: spring-boot-app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8091
+  selector:
+    app: spring-boot-app
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: react-app
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: react-app
+    spec:
+      containers:
+      - name: react-app
+        image: ajeshgeorge22/react-app
+        ports:
+        - containerPort: 7777
+        env:
+        - name: spring-boot-app
+          value: "spring-boot-app"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 7777
+  selector:
+    app: react-app
+                  
