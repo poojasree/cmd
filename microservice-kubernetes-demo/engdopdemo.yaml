@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: catalog-container
-        image:shivam1994/microservice-kubernetes-demo-catalog:T1
+        image: shivam1994/microservice-kubernetes-demo-catalog:T1
         ports:
         - containerPort: 8080
 ---
@@ -96,6 +96,7 @@ spec:
       containers:
       - name: dashboard-container
         image: shivam1994/microservice-kubernetes-demo-hystrix-dashboard:T1
+        ports:
         - containerPort: 8080
 ---
 apiVersion: v1
@@ -141,7 +142,7 @@ spec:
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: demo
+  name: zipkin-estee
 spec:
   replicas: 1
   template:
