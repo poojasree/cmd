@@ -152,7 +152,7 @@ spec:
     spec:
       containers:
       - name: zipkin-estee-container
-        image: openzipkin/zipkin:
+        image: openzipkin/zipkin:latest
         ports:
         - containerPort: 9411
 ---
